@@ -1,6 +1,8 @@
 import { validationResult } from "express-validator";
 import userModel from "../Models/user.model.js";
 import { createUser } from "../Services/user.service.js";
+import { sendWelcomeEmail } from "../emails/emailHandlers.js";
+import { ENV } from "../Services/env.service.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -26,6 +28,12 @@ export const registerUser = async (req, res) => {
         httpOnly:true,
         sameSite:"strict"
     });
+
+    try {
+      await sendWelcomeEmail(createdUser.email,createdUser.fullName,ENV.CLIENT_URL);
+    } catch (error) {
+      console.log(error.message);
+    }
     
     res.status(201).json({ createdUser, token });
   } catch (error) {
