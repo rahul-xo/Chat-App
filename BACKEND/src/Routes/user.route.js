@@ -2,8 +2,11 @@ import express from "express";
 import { loginUser, logoutUser, registerUser, updateProfile } from "../Controller/user.controller.js";
 import {body} from 'express-validator'
 import { authUser } from "../Middleware/auth.middleware.js";
+import { arcjetProtection } from "../Middleware/arcjet.middlware.js";
 const router = express();
+router.use(arcjetProtection);
 
+//register
 router.post(
   "/register",
   [
@@ -21,12 +24,16 @@ router.post(
   registerUser
 );
 
+//login
+router.post('/login',arcjetProtection,loginUser);
 
-router.post('/login',loginUser);
-
+//logout
 router.post('/logout',logoutUser);
 
+//update-profile
 router.put("/update-profile",authUser,updateProfile);
 
 router.get('/check',authUser,(req,res)=> res.status(200).json(req.user));
+
+
 export default router;
