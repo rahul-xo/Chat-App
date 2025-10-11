@@ -1,6 +1,7 @@
 import express from "express";
-import { registerUser } from "../Controller/user.controller.js";
+import { loginUser, logoutUser, registerUser, updateProfile } from "../Controller/user.controller.js";
 import {body} from 'express-validator'
+import { authUser } from "../Middleware/auth.middleware.js";
 const router = express();
 
 router.post(
@@ -20,4 +21,12 @@ router.post(
   registerUser
 );
 
+
+router.post('/login',loginUser);
+
+router.post('/logout',logoutUser);
+
+router.put("/update-profile",authUser,updateProfile);
+
+router.get('/check',authUser,(req,res)=> res.status(200).json(req.user));
 export default router;
