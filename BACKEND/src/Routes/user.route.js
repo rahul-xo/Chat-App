@@ -3,7 +3,7 @@ import { loginUser, logoutUser, registerUser, updateProfile } from "../Controlle
 import {body} from 'express-validator'
 import { authUser } from "../Middleware/auth.middleware.js";
 import { arcjetProtection } from "../Middleware/arcjet.middlware.js";
-const router = express();
+const router = express.Router();
 router.use(arcjetProtection);
 
 //register
@@ -25,7 +25,7 @@ router.post(
 );
 
 //login
-router.post('/login',arcjetProtection,loginUser);
+router.post('/login',loginUser);
 
 //logout
 router.post('/logout',logoutUser);
