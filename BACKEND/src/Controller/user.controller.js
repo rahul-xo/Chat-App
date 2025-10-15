@@ -40,7 +40,7 @@ export const registerUser = async (req, res) => {
       console.log(error.message);
     }
 
-    res.status(201).json({ createdUser, token });
+    res.status(201).json(createdUser);
   } catch (error) {
     console.log(error.message);
     res.status(500).json({ message: "Something broken up." });
@@ -63,7 +63,7 @@ export const loginUser = async (req, res) => {
   const token = user.generateToken();
   res.cookie("token", token);
 
-  res.status(200).json({ user, token });
+  res.status(200).json(user);
 };
 
 export const logoutUser = (_, res) => {

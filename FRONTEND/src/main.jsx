@@ -5,6 +5,8 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RegisterUser from './Pages/RegisterUser.jsx'
 import LoginUser from './Pages/LoginUser.jsx'
+import AuthUser from './services/authUser.jsx'
+import ChatPage from './Pages/ChatPage.jsx'
 
 const router=createBrowserRouter([
   {
@@ -13,12 +15,18 @@ const router=createBrowserRouter([
     children:[
       {
         path:'/',
+        element: <AuthUser><ChatPage/></AuthUser>
+      },
+      {
+        path:'/register',
         element:<RegisterUser/>
       },
+
       {
         path:'/login',
         element:<LoginUser/>
-      }
+      },
+
     ]
   }
 ])
