@@ -51,7 +51,6 @@ export const getChatPartners = async (req, res) => {
     ];
 
     const Partners = await userModel.find({ _id: { $in: partnerIds } });
-
     res.status(200).json(Partners);
   } catch (error) {
     console.log(error.message);

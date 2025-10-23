@@ -8,13 +8,13 @@ const AuthUser = ({ children }) => {
   const { authUser, checkAuth, isLoading } = useAuthStore();
   useEffect(() => {
     checkAuth();
-  }, [authUser]);
+  }, []);
 
   if (isLoading) {
     return <Loader />;
   }
 
-  return (!authUser ? <Navigate to='/register'/> :children)
+  return (!authUser ? <Navigate to='/login'/> :children)
 
 
 };
