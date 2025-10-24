@@ -1,6 +1,7 @@
 import messageModel from "../Models/message.model.js";
 import userModel from "../Models/user.model.js";
 import cloudinary from "../Services/cloudinary.service.js";
+import { getReceiverSocketId, io } from "../Services/socket.js";
 
 export const getContacts = async (req, res) => {
   try {
@@ -78,6 +79,11 @@ export const sendMessage = async (req, res) => {
       text,
       image: imageURL,
     });
+
+    const receiverSocketId=getReceiverSocketId(receiverId);
+    if(receiverSocketId){
+      io.to(receiverSocketId).emit("newMessage",newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {

@@ -7,13 +7,15 @@ import MessageLoader from "./MessageLoader";
 import MessageInput from "./MessageInput";
 
 const ChatContainer = () => {
-  const { selectedUser, getMessagesByUserId, messages, isMessageLoading } = useChatStore();
+  const { selectedUser, getMessagesByUserId, messages, isMessagesLoading , subscribeToMessages , unsubscribeFromMessages } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
 
   useEffect(() => {
     getMessagesByUserId(selectedUser?._id);
-  }, [selectedUser]);
+    subscribeToMessages();
+    return () => unsubscribeFromMessages();
+  }, [selectedUser, getMessagesByUserId, subscribeToMessages, unsubscribeFromMessages]);
 
   useEffect(() => {
     if (messageEndRef.current) {
@@ -25,7 +27,7 @@ const ChatContainer = () => {
     <>
       <ChatHeader />
       <div className="flex-1 px-4 sm:px-6 overflow-y-auto py-6 sm:py-8 scrollbar-thin scrollbar-thumb-slate-700/50 scrollbar-track-transparent">
-        {messages.length > 0 && !isMessageLoading ? (
+        {messages.length > 0 && !isMessagesLoading ? (
           <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
             {messages.map((msg) => {
               return (
@@ -62,7 +64,7 @@ const ChatContainer = () => {
             })}
             <div ref={messageEndRef} />
           </div>
-        ) : isMessageLoading ? (
+        ) : isMessagesLoading ? (
           <MessageLoader />
         ) : (
           <NoChatHistoryPlaceholder name={selectedUser.fullName} />

@@ -31,6 +31,10 @@ export const initializeSocketIO=(server)=>{
     return io;
 }
 
+export function getReceiverSocketId(userId){
+    return userSocketMap[userId];
+}
+
 export { io, userSocketMap };
 
 
