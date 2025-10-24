@@ -1,9 +1,12 @@
 import React from "react";
 import { useChatStore } from "../store/useChatStore";
 import { XIcon } from "lucide-react";
+import { useAuthStore } from "../store/useAuthStore";
 
 const ChatHeader = () => {
-  const { selectedUser, setSelectedUser } = useChatStore();
+  const { selectedUser, setSelectedUser} = useChatStore();
+  const {  onlineUsers } = useAuthStore();
+  const isOnline = onlineUsers.includes(selectedUser?._id);
   return (
     <div
       className="flex justify-between items-center bg-slate-800/50 border-b
@@ -23,8 +26,8 @@ const ChatHeader = () => {
           <h3 className="text-slate-200 font-medium">
             {selectedUser.fullName}
           </h3>
-          <p className="text-slate-400 text-sm">
-            Online
+          <p className={`text-sm ${isOnline ? "text-green-400" : "text-gray-400"}`}>
+            {isOnline ? "Online" : "Offline"}
           </p>
         </div>
       </div>
