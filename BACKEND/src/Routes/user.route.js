@@ -4,7 +4,7 @@ import {body} from 'express-validator'
 import { authUser } from "../Middleware/auth.middleware.js";
 import { arcjetProtection } from "../Middleware/arcjet.middlware.js";
 const router = express.Router();
-// router.use(arcjetProtection);
+router.use(arcjetProtection);
 
 //register
 router.post(
