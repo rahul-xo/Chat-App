@@ -44,7 +44,7 @@ function ContactList() {
               <img
                 src={contact.profilePic || "/Images/avatar.png"}
                 alt={contact.fullName}
-                className="rounded-full transition-transform duration-300 hover:scale-110"
+                className="rounded-full transition-transform duration-300 h-full w-full object-cover hover:scale-110"
               />
             </div>
             <h4 className="text-slate-200 font-medium text-sm sm:text-base truncate transition-colors duration-300 hover:text-slate-100">

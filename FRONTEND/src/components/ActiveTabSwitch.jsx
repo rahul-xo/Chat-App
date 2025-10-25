@@ -20,7 +20,7 @@ function ActiveTabSwitch() {
           onClick={() => handleTabClick("chats")}
           className={`tab flex-1 flex items-center justify-center gap-2 transition-all duration-400 ease-in-out rounded-md ${
             activeTab === "chats"
-              ? "bg-linear-to-r from-purple-500 to-indigo-600 text-white font-semibold shadow-lg scale-105"
+              ? "bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold shadow-lg scale-105"
               : "text-slate-400 hover:text-slate-200 hover:bg-slate-700/40 hover:scale-102"
           }`}
         >
@@ -33,7 +33,7 @@ function ActiveTabSwitch() {
           onClick={() => handleTabClick("contacts")}
           className={`tab flex-1 flex items-center justify-center gap-2 transition-all duration-400 ease-in-out rounded-md ${
             activeTab === "contacts"
-              ? "bg-linear-to-r from-purple-500 to-indigo-600 text-white font-semibold shadow-lg scale-105"
+              ? "bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold shadow-lg scale-105"
               : "text-slate-400 hover:text-slate-200 hover:bg-slate-700/40 hover:scale-102"
           }`}
         >

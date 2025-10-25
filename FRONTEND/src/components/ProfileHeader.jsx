@@ -36,9 +36,9 @@ function ProfileHeader() {
 
   return (
     <div className='p-3 sm:p-4 border-b border-slate-700/50 bg-linear-to-r from-slate-900/20 to-transparent'>
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center gap-20 justify-between'>
         <div className='flex items-center gap-3 sm:gap-4 animate-in fade-in slide-in-from-left-2 duration-500'>
-          <div className='avatar online'>
+          <div className='avatar '>
             <div className='w-12 sm:w-14 rounded-full relative group cursor-pointer ring-2 ring-slate-700/50 ring-offset-2 ring-offset-slate-900 hover:ring-slate-600/60 transition-all duration-300 hover:scale-105' onClick={() => fileInputRef.current.click()}>
               <img
                 src={selectedImg || authUser.profilePic || "./Images/avatar.png"}
