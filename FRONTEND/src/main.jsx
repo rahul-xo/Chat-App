@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RegisterUser from './Pages/RegisterUser.jsx'
 import LoginUser from './Pages/LoginUser.jsx'
-import AuthUser from './services/authUser.jsx'
+import AuthUser from './services/AuthUser.jsx'
 import ChatPage from './Pages/ChatPage.jsx'
 
 const router=createBrowserRouter([
