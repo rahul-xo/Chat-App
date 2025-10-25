@@ -61,7 +61,11 @@ export const loginUser = async (req, res) => {
   if (!isUser)
     return res.status(400).json({ message: "invalid email or password" });
   const token = user.generateToken();
-  res.cookie("token", token);
+  res.cookie("token", token, {
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        sameSite: "strict" 
+    });
 
   res.status(200).json(user);
 };

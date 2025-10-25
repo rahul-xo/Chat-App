@@ -9,9 +9,7 @@ app.use(express.json({limit:"10mb"}));
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}))
 app.use(cookieParser());
 
-app.get('/',(req,res)=>{
-    res.send("hello there");
-})
+
 
 app.use('/users',userRoutes);
 app.use('/messages',messageRoutes);
