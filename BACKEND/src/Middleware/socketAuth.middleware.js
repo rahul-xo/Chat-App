@@ -4,6 +4,7 @@ import { ENV } from '../Services/env.service.js'
 
 export const socketAuthMiddleware=async(socket,next)=>{
     try {
+        console.log("SOCKET AUTH: Raw Cookie Header:", socket.handshake.headers.cookie);
         const token=socket.handshake.headers.cookie
         ?.split("; ")
         .find((row)=>row.startsWith("token="))
