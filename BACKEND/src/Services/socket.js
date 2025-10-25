@@ -2,14 +2,13 @@ import {Server} from "socket.io";
 import { ENV } from "./env.service.js";
 import { socketAuthMiddleware } from "../Middleware/socketAuth.middleware.js";
 
-let io;
-const userSocketMap={};
 
+const userSocketMap={};
+let io;
 export const initializeSocketIO=(server)=>{
-    io=new Server(server,{
+     io=new Server(server,{
         cors:{
-            origin: ENV.CLIENT_URL,
-            methods:["GET","POST"],
+            origin: [ENV.CLIENT_URL],
             credentials:true
         }
     })
