@@ -29,7 +29,7 @@ export const registerUser = async (req, res) => {
         res.cookie("token", token, {
             maxAge: 7 * 24 * 60 * 60 * 1000, // Corrected maxAge calculation
             httpOnly: true,
-            sameSite: "strict",
+            sameSite: "lax",
             secure: ENV.NODE_ENV === 'production' // Added secure flag
         });
 
@@ -78,7 +78,7 @@ export const loginUser = async (req, res) => {
         res.cookie("token", token, {
             maxAge: 7 * 24 * 60 * 60 * 1000, // Added cookie options
             httpOnly: true,
-            sameSite: "strict",
+            sameSite: "lax",
             secure: ENV.NODE_ENV === 'production' // Added secure flag
         });
 
@@ -102,7 +102,7 @@ export const logoutUser = (req, res) => {
         res.cookie("token", "", {
             maxAge: 0,
             httpOnly: true,
-            sameSite: "strict",
+            sameSite: "lax",
             secure: ENV.NODE_ENV === 'production' // Added secure flag
         });
         res.status(200).json({ message: "Logged out successfully" }); // Standardized message
