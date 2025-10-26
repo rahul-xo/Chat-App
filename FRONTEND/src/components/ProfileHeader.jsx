@@ -36,7 +36,7 @@ function ProfileHeader() {
 
   return (
     <div className='p-3 sm:p-4 border-b border-slate-700/50 bg-linear-to-r from-slate-900/20 to-transparent'>
-      <div className='flex items-center gap-20 justify-between'>
+      <div className='flex items-center gap-4 justify-between'>
         <div className='flex items-center gap-3 sm:gap-4 animate-in fade-in slide-in-from-left-2 duration-500'>
           <div className='avatar '>
             <div className='w-12 sm:w-14 rounded-full relative group cursor-pointer ring-2 ring-slate-700/50 ring-offset-2 ring-offset-slate-900 hover:ring-slate-600/60 transition-all duration-300 hover:scale-105' onClick={() => fileInputRef.current.click()}>
@@ -59,8 +59,8 @@ function ProfileHeader() {
             className='hidden'
           />
 
-          <div>
-            <h3 className='text-slate-100 font-semibold text-sm sm:text-base max-w-[120px] sm:max-w-[150px] lg:max-w-[200px] truncate transition-colors duration-300'>
+          <div className="flex-1 min-w-0"> 
+            <h3 className='text-slate-100 font-semibold text-sm sm:text-base leading-tight break-words pr-2'>
               {authUser.fullName}
             </h3>
             <p className='text-emerald-400 text-xs font-medium flex items-center gap-1.5'>
@@ -71,7 +71,7 @@ function ProfileHeader() {
         </div>
 
         <div className='flex gap-1.5 sm:gap-2 items-center animate-in fade-in slide-in-from-right-2 duration-500 delay-100'>
-          <div className="tooltip tooltip-bottom" data-tip="Logout">
+          <div className="tooltip  tooltip-bottom" data-tip="Logout">
             <button
               className='p-1.5 sm:p-2 rounded-full text-slate-400 hover:bg-slate-700/60 hover:text-slate-200 transition-all duration-300 hover:scale-110 active:scale-95'
               onClick={logout}

@@ -34,7 +34,6 @@ export const useAuthStore = create((set, get) => ({
       set({ authUser: res.data });
       get().connectSocket();
     } catch (error) {
-      console.log(error);
       set({ authUser: null });
     } finally {
       set({ isLoading: false });
