@@ -12,6 +12,7 @@ export const initializeSocketIO=(server)=>{
             credentials:true
         }
     })
+    console.log(ENV.CLIENT_URL);
     io.use(socketAuthMiddleware);
 
     io.on("connection",(socket)=>{
