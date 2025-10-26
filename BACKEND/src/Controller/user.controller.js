@@ -6,17 +6,17 @@ import { ENV } from "../Services/env.service.js";
 import cloudinary from "../Services/cloudinary.service.js";
 
 const cookieOptions = {
-    maxAge: 7 * 24 * 60 * 60 * 1000, // Corrected: 7 days in milliseconds
+    maxAge: 7 * 24 * 60 * 60 * 1000, 
     httpOnly: true,
-    sameSite: "strict", // Start with strict, change to "lax" only if needed
-    secure: ENV.NODE_ENV === 'production',
+    sameSite: "none", 
+    secure: 'true',
 };
 
 export const registerUser = async (req, res) => {
     try {
         const error = validationResult(req);
         if (!error.isEmpty())
-            return res.status(400).json({ message: error.array()[0].msg }); // Use message key
+            return res.status(400).json({ message: error.array()[0].msg }); 
 
         const { email, password, fullName, profilePic } = req.body;
 
@@ -32,7 +32,6 @@ export const registerUser = async (req, res) => {
         });
 
         const token = createdUser.generateToken();
-        // Use consistent cookie options
         res.cookie("token", token, cookieOptions);
 
         try {
@@ -74,7 +73,7 @@ export const loginUser = async (req, res) => {
             return res.status(400).json({ message: "Invalid email or password" });
 
         const token = user.generateToken();
-        // Use consistent cookie options
+        
         res.cookie("token", token, cookieOptions);
 
         res.status(200).json({
@@ -91,7 +90,7 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = (req, res) => {
     try {
-        // Clear cookie using res.cookie with expiry in the past
+      
         res.cookie("token", "", { ...cookieOptions, maxAge: 0 });
         res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
@@ -100,7 +99,7 @@ export const logoutUser = (req, res) => {
     }
 };
 
-// updateProfile remains mostly the same, just ensure error handling is robust
+
 export const updateProfile = async (req, res) => {
     try {
         const { profilePic } = req.body;
